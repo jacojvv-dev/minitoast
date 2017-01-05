@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mini Toast Demo</title>
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/5.0.0/normalize.css">
+    <link rel="stylesheet" href="demo.css">
+</head>
+<body>
+    
+    <h1>Mini Toast Demo</h1>
+
+    <button onclick="t.success()">Success</button>
+    <button onclick="t.warning()">Warning</button>
+    <button onclick="t.error()">Error</button>
+    <button onclick="t.info()">Information</button>
+    <button onclick="t.default()">Default</button>
+    <hr>
+    <button onclick="t.success('Everything Went Well')">Success</button>
+    <button onclick="t.warning('Something Was Not Quite Right')">Warning</button>
+    <button onclick="t.error('An Error Has Occured')">Error</button>
+    <button onclick="t.info('Value Changed')">Information</button>
+    <button onclick="t.default('All Good Homes')">Default</button>
+
+
+
+    <script src="miniToast.min.js"></script>
+    <script src="demo.js"></script>
+</body>
+</html>
