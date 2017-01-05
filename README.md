@@ -1,4 +1,9 @@
-# NOT PRODUCTION READY
+# NOT PRODUCTION READY - Still Needs
+
+* Tests
+* Cleanup
+* Better Styling
+* Documentation
 
 # miniToast
 **Just another js lib to display small popup messages, using only javascript**
