@@ -26,7 +26,8 @@ var minitoast = function () {
             stl: {
                 marginTop: '7px',
                 marginBottom: '7px',
-                padding: '10px'
+                padding: '12px',
+                borderRadius : '3px'
             },
             headStl: {
                 margin: '0px',
@@ -52,11 +53,11 @@ var minitoast = function () {
          * [Default Message, Message Heading, Color]
          */
         msgs: {
-            s: ['', 'Success', '#27ae60'],
-            w: ['', 'Warning', '#f39c12'],
-            e: ['', 'Error', '#c0392b'],
-            i: ['', 'Info', '#2980b9'],
-            d: ['', 'Notification', '#2c3e50']
+            s: ['', 'Success', '#27ae60','mini-success'],
+            w: ['', 'Warning', '#f39c12','mini-warning'],
+            e: ['', 'Error', '#c0392b','mini-error'],
+            i: ['', 'Info', '#2980b9','mini-info'],
+            d: ['', 'Notification', '#2c3e50','mini-default']
         }
 
     };
@@ -82,6 +83,7 @@ var t_mets = {
             //Set some base styles
             cont = document.createElement('div');
             cont.id = 'notif-cont';
+            cont.classList.add('mini-notif-container');
 
             //This loop will apply all styles in the stl object of the container
             //This loop allows allows the styles to be extended, as much as the user wants
@@ -90,8 +92,6 @@ var t_mets = {
                     cont.style[key] = stls[key];
                 }
             }
-
-
 
             //Set up the edge spacing
             var algn = opt.align.split('-');
@@ -145,12 +145,11 @@ var t_mets = {
 
         //Get the options for messages
         var msgOpts = this.opts.msgs;
-        var head = msgOpts[type][1];
-        var color = msgOpts[type][2];
 
         //Create the toast element
         var tst = document.createElement('div');
-        tst.style.backgroundColor = color;
+        tst.style.backgroundColor = msgOpts[type][2];
+        tst.classList.add(msgOpts[type][3],'mini-notif');
         //Apply all the styles from the stls for the notif to the container for the toast
         for (var key in stls) {
             if (stls.hasOwnProperty(key)) {
@@ -159,7 +158,7 @@ var t_mets = {
         }
         //Create the heading, and the message containers, insert the text, and then append them into the notification div
         var headingP = document.createElement('p');
-        headingP.innerText = head;
+        headingP.innerText = msgOpts[type][1];
         for (var key in headStls) {
             if (headStls.hasOwnProperty(key)) {
                 headingP.style[key] = headStls[key];
@@ -176,7 +175,7 @@ var t_mets = {
         tst.appendChild(messageP);
         //Finally insert it into the main notification container, and then set up the timeout to remove it again
         document.getElementById('notif-cont').appendChild(tst);
-        setTimeout(function() {
+        setTimeout(function () {
             document.getElementById('notif-cont').removeChild(document.getElementById('notif-cont').firstChild);
         }, 2500);
     }
