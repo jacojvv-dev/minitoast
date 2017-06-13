@@ -103,7 +103,7 @@ Every instance is spawned with a class attached, you can use the class to custom
 
 ```css
     /* The main container for all notifications*/
-    .mini-notif-container{
+    .mt-cont{
        /*
         * Your css here
         */
