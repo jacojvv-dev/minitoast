@@ -1,0 +1,23 @@
+{
+  "name": "minitoast",
+  "version": "0.0.1",
+  "description": "Just another js lib to display popup messages",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacojvv-dev/minitoast.git"
+  },
+  "keywords": [
+    "toast"
+  ],
+  "author": "Jaco Jansen van Vuuren",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jacojvv-dev/minitoast/issues"
+  },
+  "homepage": "https://github.com/jacojvv-dev/minitoast#readme",
+  "devDependencies": {
+    "gulp-copy": "^1.0.0",
+    "gulp-minify": "^1.0.0",
+    "gulp-watch": "^4.3.11"
+  }
+}
