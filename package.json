@@ -16,6 +16,7 @@
   },
   "homepage": "https://github.com/jacojvv-dev/minitoast#readme",
   "devDependencies": {
+    "gulp-clean-css": "^3.8.0",
     "gulp-copy": "^1.0.0",
     "gulp-minify": "^1.0.0",
     "gulp-watch": "^4.3.11"

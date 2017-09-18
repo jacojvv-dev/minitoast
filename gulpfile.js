@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var minify = require('gulp-minify');
 var gulpCopy = require('gulp-copy');
 var watch = require('gulp-watch');
+var cleancss = require('gulp-clean-css');
 
 gulp.task('default', [
     'compile',
@@ -15,7 +16,13 @@ gulp.task('compile',function(){
             min:'.min.js'
         },
         exclude: ['tasks'],
-        ignoreFiles: ['.combo.js', '-min.js']
+        ignoreFiles: ['-min.js']
+    }))
+    .pipe(gulp.dest('dist'));
+
+    gulp.src('src/*.css')
+    .pipe(cleancss({
+        compatibility: 'ie8'
     }))
     .pipe(gulp.dest('dist'))
 });
