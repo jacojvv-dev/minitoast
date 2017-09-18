@@ -1,0 +1,99 @@
+        /*
+         *   THEME : BLOCK TOAST
+         */
+
+        .mt-notif{
+            margin: 10px 0px;
+            padding: 12px; 
+            border-radius: 3px;
+            border: none;
+            box-shadow: 0px 5px 0px 0px rgba(0, 0, 0, 0.11), inset 0px -4px 0px 0px rgba(0, 0, 0, 0.33), inset 0px -4px 0px 1px rgba(255, 255, 255, 0.33);
+            opacity:1;
+            position: relative;
+        }
+
+        
+        
+        .mt-cont {
+            width: 250px; position: fixed; color: white; bottom: 20px; right: 20px;
+        }
+
+        .mt-notif p{
+            margin: 0px;
+            font-size: 16px;
+        }
+
+        .mt-notif p:first-child{
+            font-weight: bold;
+        }
+
+        .mt-success{            
+            background-color: rgb(39, 174, 96);        
+        }
+        .mt-default{            
+            color: #222;
+            border: 1px solid rgba(0, 0, 0, 0.2)!important;
+            background-color: rgb(255, 255, 255);
+        }
+        .mt-info{ 
+            background-color: rgb(41, 128, 185);
+        }
+        .mt-error{ 
+            background-color: rgb(192, 57, 43); 
+        }
+        .mt-warning{ 
+            background-color: rgb(243, 156, 18); 
+        }
+
+        /* 
+         *   ANIMATION OPTIONS : slide-fade (SLIDE AND FADE IN AND OUT)
+         *   Finer control will be to add an animation for in and out. Using anim delay and the js value to determine when out is played.
+         *   This is over complicating things though.... so maybe a next release
+         */
+
+        .mt-slide-fade{
+            animation-name: slide-fader;
+            animation-duration: 2.5s;
+            animation-iteration-count: 1;
+            animation-timing-function: ease-in-out;
+        }
+
+        @keyframes slide-fader {
+            0% {
+                opacity: 0;
+                left: 30px;
+            }
+            10%{
+                opacity: 1;
+                left: 0px;
+            }
+            90% {
+                opacity: 1;
+                left: 0px;
+            }
+            100% {
+                opacity: 0;
+                left: 30px;
+            }
+        }
+
+        /*
+         *   MOBILE CSS : NEED TO WORK ON THIS SOME MORE
+         */
+
+        @media (max-width: 500px) {
+
+            .mt-cont {
+                width: 98%; position: fixed; color: white; bottom: 0px; left: 1%;
+            }
+            .mt-notif{
+                margin: 10px 0px 0px 0px;
+                padding: 12px; 
+                border-radius: 3px;
+                border: 1px solid rgba(255, 255, 255, 0.5);
+                box-shadow: none;
+                opacity:1;
+                position: relative;
+            }
+
+        }

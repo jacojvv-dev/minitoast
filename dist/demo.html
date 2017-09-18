@@ -2,37 +2,166 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Mini Toast Demo</title>
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/5.0.0/normalize.css">
     <style>
+        /*
+            DEMO PAGE CSS : NOT REQUIRED BY MINI TOAST
+        */
+
         body{
             font-family: Arial,Helvetica Neue,Helvetica,sans-serif;
+            background: #a3ccff;
+            color:#3e3e3e;
+            font-size: 16px;
+            line-height: 1.5;            
         }
+
+        .container{
+            min-width: 440px;
+            max-width: 90%;
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #ffffff;
+            padding: 0px 25px 25px 25px;
+            border: 1px solid #f1f1f1;
+            border-radius: 3px;
+            box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1), inset 0px -5px 0px 0 rgba(0, 0, 0, 0.1), 0px 6px 2px 0px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .btn{
+            margin: 2px;
+            padding: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            border-radius: 3px;
+            color: #fff;
+        }
+
+        .btn:hover{
+            padding: 11px;
+            margin: 1px;
+        }
+
+        .logo-toaster{
+            width: 240px;
+            color: #fff;
+            /* position: relative; */
+            bottom: 800px;
+            left: 44%;
+        }
+
+        h3{
+            border-bottom: 1px solid #d8d8d8;
+            text-align: left;
+        }
+
+
+        @media (max-width: 500px) {
+            .container {
+                min-width: 90%;
+                max-width: 90%;
+                position: relative;
+                top: 0%;
+                left: 0%;
+                transform: translate(0%, 0%);
+                padding: 5%;
+            }
+        }
+
+
     </style>
-    <link rel="stylesheet" href="demo.css">
+    <link id="mt-outfit" rel="stylesheet" href="miniToast.css">
 </head>
 <body>
     
-    <h1>Mini Toast Demo</h1>
+    <div class="container">
+        <!-- Popp toast out of the logo, cause it would be epic, pop the different styles with the random text. -->
+        <img src="MiniToast.jpg" alt="minitoast sexy, compact, simple" style="padding-top: 30px;">
+        <br/>
+        <h1 style="border-bottom: 1px solid #eaecef;" >Mini Toast Live Demo</h1>
+        <p>The simple, beautiful, light weight and mobile friendly pop up notification. Click the buttons below to see mini toast in action, or just sit and watch as we entertain you with with random 'facts' every couple of seconds.</p>
+        <h3>Toast</h3>
+        <button onclick="t.success()" class="btn mt-success">Success</button>
+        <button onclick="t.warning()" class="btn mt-warning">Warning</button>
+        <button onclick="t.error()" class="btn mt-error">Error</button>
+        <button onclick="t.info()" class="btn mt-info">Information</button>
+        <button onclick="t.default()" class="btn mt-default">Default</button>
 
-    <button onclick="t.success()">Success</button>
-    <button onclick="t.warning()">Warning</button>
-    <button onclick="t.error()">Error</button>
-    <button onclick="t.info()">Information</button>
-    <button onclick="t.default()">Default</button>
-    <hr>
-    <button onclick="t.success('Everything Went Well')">Success</button>
-    <button onclick="t.warning('Something Was Not Quite Right')">Warning</button>
-    <button onclick="t.error('An Error Has Occured')">Error</button>
-    <button onclick="t.info('Value Changed')">Information</button>
-    <button onclick="t.default('All Good Homes')">Default</button>
+        <h3>Toast with message</h3>
+        <button onclick="t.success(getRandomFact())" class="btn mt-success">Success</button>
+        <button onclick="t.warning(getRandomFact())" class="btn mt-warning">Warning</button>
+        <button onclick="t.error(getRandomFact())" class="btn mt-error">Error</button>
+        <button onclick="t.info(getRandomFact())" class="btn mt-info" >Information</button>
+        <button onclick="t.default(getRandomFact())" class="btn mt-default">Default</button>
 
+        <h3>The Mini Toast Wardrobe</h3>
+        <p>Currently mini toast has two outfits, 
+            <a href="#" onclick="document.getElementById('mt-outfit').setAttribute('href', 'miniToast-block-card.css');">block toast</a> and 
+            <a href="#" onclick="document.getElementById('mt-outfit').setAttribute('href', 'miniToast.css');">regular toast</a>. Feel free to customize the look and feel.</p>
+    </div>
 
+<!-- 
+    <div id="mt-cont" class="mt-cont">
+        <div class="mt-success mt-notif" >
+            <p >Success</p>
+            <p >These toasts are for styling purposes</p>
+        </div>
+        <div class="mt-warning mt-notif">
+            <p >Warning</p>
+            <p >Something Was Not Quite Right</p>
+        </div>
+        <div class="mt-error mt-notif">
+            <p >Error</p>
+            <p >An Error Has Occured</p>
+        </div>
+        <div class="mt-info mt-notif" ;
+            <p>Info</p>
+            <p >Value Changed</p>
+        </div>
+        <div class="mt-default mt-notif">
+            <p >Notification</p>
+            <p >All Good Homes</p>
+        </div>
+    </div> -->
 
-    <script src="minitoast.min.js"></script>
+     
+    
+    <script src="miniToast.min.js"></script>
     <script>
-        console.log("Starting Demo");
+        console.log("Welcome to minitoast, feel free to use this product anyway way you like.");
         var t = new minitoast();
+        t.info('Welcome to Mini Toast, click the buttons to get some toast!');
+
+        var funInfoMessages = [ 'minitoast does not require jQuery',
+                                'minitoast is loved by llamas all around the world',
+                                'You will love minitoast so much you will ask it to be your valentine',
+                                'minitoast is < 3kb, it\'s all about the little things',
+                                'minitoast is easy to customize',
+                                'minitoast free to use',
+                                'Fork us on github!',
+                                'minitoast is mobile friendly, try it on your phone',
+                                'minitoast enjoys long walks on the beach, and not bloating your website',
+                                'minitoast, this is a start of a beautiful friendship',
+                                'minitoast is great at small talk'];
+        
+        var messageCategories = ['info','success','warning','error','default'];
+
+        function getRandomFact(){
+            return funInfoMessages[Math.floor(Math.random()*funInfoMessages.length)];
+        }
+
+        // Some random interval messages
+        setInterval(function(){
+            var category = messageCategories[Math.floor(Math.random()*messageCategories.length)];
+            t[category](getRandomFact());
+        }, 7000); 
+
     </script>
 </body>
 </html>

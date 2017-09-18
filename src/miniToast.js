@@ -7,37 +7,10 @@ var minitoast = function () {
     //Set the default options
     instance.opts = {
         /**
-         * Options for the toast item container
-         */
-        cont: {
-            align: 'bottom-right',
-            edge: '20px',
-            stl: {
-                width: '250px',
-                position: 'fixed',
-                color: 'white'
-            }
-        },
-        /**
-         * Options for the actual toast messages
+         * Timeout for the notifications
          */
         notif: {
-            timeout: 2500,
-            stl: {
-                marginTop: '7px',
-                marginBottom: '7px',
-                padding: '12px',
-                borderRadius: '3px'
-            },
-            headStl: {
-                margin: '0px',
-                padding: '0px',
-                fontWeight: 'bold'
-            },
-            msgStl: {
-                margin: '0px',
-                padding: '0px'
-            }
+            timeout: 5000
         },
         /**
          * Default messages  & colors for the popup
@@ -50,14 +23,14 @@ var minitoast = function () {
          * d - Default
          * 
          * Array Props
-         * [Default Message, Message Heading, Color]
+         * [Default Message, Message Heading, Classname]
          */
         msgs: {
-            s: ['', 'Success', '#27ae60', 'mini-success'],
-            w: ['', 'Warning', '#f39c12', 'mini-warning'],
-            e: ['', 'Error', '#c0392b', 'mini-error'],
-            i: ['', 'Info', '#2980b9', 'mini-info'],
-            d: ['', 'Notification', '#2c3e50', 'mini-default']
+            s: ['', 'Success', 'mt-success'],
+            w: ['', 'Warning', 'mt-warning'],
+            e: ['', 'Error', 'mt-error'],
+            i: ['', 'Info', 'mt-info'],
+            d: ['', 'Notification', 'mt-default']
         }
 
     };
@@ -76,27 +49,11 @@ var t_mets = {
     init: function () {
         var cont = document.getElementById('mt-cont');
         if (!cont) {
-            //Get container options
-            var opt = this.opts.cont;
-            var stls = opt.stl;
 
             //Set some base styles
             cont = document.createElement('div');
             cont.id = 'mt-cont';
             cont.classList.add('mt-cont');
-
-            //This loop will apply all styles in the stl object of the container
-            //This loop allows allows the styles to be extended, as much as the user wants
-            for (var key in stls) {
-                if (stls.hasOwnProperty(key)) {
-                    cont.style[key] = stls[key];
-                }
-            }
-
-            //Set up the edge spacing
-            var algn = opt.align.split('-');
-            cont.style[algn[0]] = opt.edge;
-            cont.style[algn[1]] = opt.edge;
 
             document.body.appendChild(cont);
         }
@@ -139,41 +96,27 @@ var t_mets = {
     append: function (msg, type) {
         //Get the options for the notification container
         var tstOpts = this.opts.notif;
-        var stls = tstOpts.stl;
-        var headStls = tstOpts.headStl;
-        var msgStls = tstOpts.msgStl;
 
         //Get the options for messages
         var msgOpts = this.opts.msgs;
 
         //Create the toast element
         var tst = document.createElement('div');
-        tst.style.backgroundColor = msgOpts[type][2];
-        tst.classList.add(msgOpts[type][3], 'mini-notif');
-        //Apply all the styles from the stls for the notif to the container for the toast
-        tst = this.applyStyles(tst,stls);        
+        tst.classList.add(msgOpts[type][2], 'mt-notif', 'mt-slide-fade');
+        tst.style.animationDuration = (tstOpts.timeout /1000)+'s';
+
         //Create the heading, and the message containers, insert the text, and then append them into the notification div
         var headingP = document.createElement('p');
         headingP.innerText = msgOpts[type][1];
-        headingP = this.applyStyles(headingP,headStls);
         tst.appendChild(headingP);
         var messageP = document.createElement('p');
-        messageP.innerText = msg;
-        messageP = this.applyStyles(messageP,msgStls);        
+        messageP.innerText = msg;    
         tst.appendChild(messageP);
         //Finally insert it into the main notification container, and then set up the timeout to remove it again
         document.getElementById('mt-cont').appendChild(tst);
         setTimeout(function () {
             document.getElementById('mt-cont').removeChild(document.getElementById('mt-cont').firstChild);
-        }, 2500);
-    },
-    applyStyles: function (item, styles) {
-        for (var key in styles) {
-            if (styles.hasOwnProperty(key)) {
-                item.style[key] = styles[key];
-            }
-        }
-        return item;
+        }, tstOpts.timeout);
     }
 };
 
