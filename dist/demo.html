@@ -76,7 +76,7 @@
 
 
     </style>
-    <link id="mt-outfit" rel="stylesheet" href="miniToast.css">
+    <link id="mt-outfit" rel="stylesheet" href="./css/minitoast.css">
 </head>
 <body>
     
@@ -85,7 +85,7 @@
         <img src="MiniToast.jpg" alt="minitoast sexy, compact, simple" style="padding-top: 30px;">
         <br/>
         <h1 style="border-bottom: 1px solid #eaecef;" >Mini Toast Live Demo</h1>
-        <p>The simple, beautiful, light weight and mobile friendly pop up notification. Click the buttons below to see mini toast in action, or just sit and watch as we entertain you with with random 'facts' every couple of seconds.</p>
+        <p>The simple, beautiful, lightweight and mobile friendly pop up notification. Click the buttons below to see mini toast in action, or just sit and watch as we entertain you with with random 'facts' every couple of seconds.</p>
         <h3>Toast</h3>
         <button onclick="t.success()" class="btn mt-success">Success</button>
         <button onclick="t.warning()" class="btn mt-warning">Warning</button>
@@ -102,66 +102,11 @@
 
         <h3>The Mini Toast Wardrobe</h3>
         <p>Currently mini toast has two outfits, 
-            <a href="#" onclick="document.getElementById('mt-outfit').setAttribute('href', 'miniToast-block-card.css');">block toast</a> and 
-            <a href="#" onclick="document.getElementById('mt-outfit').setAttribute('href', 'miniToast.css');">regular toast</a>. Feel free to customize the look and feel.</p>
+            <a href="#" onclick="document.getElementById('mt-outfit').setAttribute('href', './css/minitoast-block-card.css');">block toast</a> and 
+            <a href="#" onclick="document.getElementById('mt-outfit').setAttribute('href', './css/minitoast.css');">regular toast</a>. Feel free to customize the look and feel.</p>
     </div>
-
-<!-- 
-    <div id="mt-cont" class="mt-cont">
-        <div class="mt-success mt-notif" >
-            <p >Success</p>
-            <p >These toasts are for styling purposes</p>
-        </div>
-        <div class="mt-warning mt-notif">
-            <p >Warning</p>
-            <p >Something Was Not Quite Right</p>
-        </div>
-        <div class="mt-error mt-notif">
-            <p >Error</p>
-            <p >An Error Has Occured</p>
-        </div>
-        <div class="mt-info mt-notif" ;
-            <p>Info</p>
-            <p >Value Changed</p>
-        </div>
-        <div class="mt-default mt-notif">
-            <p >Notification</p>
-            <p >All Good Homes</p>
-        </div>
-    </div> -->
-
-     
     
-    <script src="miniToast.min.js"></script>
-    <script>
-        console.log("Welcome to minitoast, feel free to use this product anyway way you like.");
-        var t = new minitoast();
-        t.info('Welcome to Mini Toast, click the buttons to get some toast!');
+    <script src="./js/demo.js"></script>
 
-        var funInfoMessages = [ 'minitoast does not require jQuery',
-                                'minitoast is loved by llamas all around the world',
-                                'You will love minitoast so much you will ask it to be your valentine',
-                                'minitoast is < 3kb, it\'s all about the little things',
-                                'minitoast is easy to customize',
-                                'minitoast free to use',
-                                'Fork us on github!',
-                                'minitoast is mobile friendly, try it on your phone',
-                                'minitoast enjoys long walks on the beach, and not bloating your website',
-                                'minitoast, this is a start of a beautiful friendship',
-                                'minitoast is great at small talk'];
-        
-        var messageCategories = ['info','success','warning','error','default'];
-
-        function getRandomFact(){
-            return funInfoMessages[Math.floor(Math.random()*funInfoMessages.length)];
-        }
-
-        // Some random interval messages
-        setInterval(function(){
-            var category = messageCategories[Math.floor(Math.random()*messageCategories.length)];
-            t[category](getRandomFact());
-        }, 7000); 
-
-    </script>
 </body>
 </html>

@@ -1,31 +1,26 @@
-/**
- * Main instantiation logic for tinyToast
- */
-var minitoast = function () {
-    //Create instance of the methods
-    var instance = Object.create(t_mets);
-    //Set the default options
-    instance.opts = {
+class minitoast {
+    constructor() {
         /**
          * Timeout for the notifications
          */
-        notif: {
+        this.notif = {
             timeout: 5000
-        },
+        }
+
         /**
          * Default messages  & colors for the popup
          * Colors courtesy of https://flatuicolors.com/
-         * 
+         *
          * s - Success
          * w - Warning
          * e - Error
          * i - Information
          * d - Default
-         * 
+         *
          * Array Props
          * [Default Message, Message Heading, Classname]
          */
-        msgs: {
+        this.msgs = {
             s: ['', 'Success', 'mt-success'],
             w: ['', 'Warning', 'mt-warning'],
             e: ['', 'Error', 'mt-error'],
@@ -33,23 +28,15 @@ var minitoast = function () {
             d: ['', 'Notification', 'mt-default']
         }
 
-    };
-    instance.init();
-    return instance;
-};
+        this.init();
+    }
 
-
-/**
- * This contains all the functions that will be used by the lib
- */
-var t_mets = {
     /**
-     * initialised the base container with its options
+     * Gets/Creates the base notification container
      */
-    init: function () {
-        var cont = document.getElementById('mt-cont');
+    init() {
+        let cont = document.getElementById('mt-cont');
         if (!cont) {
-
             //Set some base styles
             cont = document.createElement('div');
             cont.id = 'mt-cont';
@@ -57,60 +44,69 @@ var t_mets = {
 
             document.body.appendChild(cont);
         }
-    },
+        this.cont = cont;
+    }
+
+
     /**
-     * base entry for the success message
+     * success message
+     * @param {string|null} msg
      */
-    success: function (msg) {
-        var toastmsg = msg || this.opts.msgs.s[0];
-        this.append(toastmsg, 's');
-    },
+    success(msg = null) {
+        this.append(msg || this.msgs.s[0], 's');
+    }
+
     /**
-     * base entry for the warning message
+     * warning message
+     * @param {string|null} msg
      */
-    warning: function (msg) {
-        var toastmsg = msg || this.opts.msgs.w[0];
-        this.append(toastmsg, 'w');
-    },
+    warning(msg = null) {
+        this.append(msg || this.msgs.w[0], 'w');
+    }
+
     /**
-     * base entry for the error message
+     * error message
+     * @param {string|null} msg
      */
-    error: function (msg) {
-        var toastmsg = msg || this.opts.msgs.e[0];
-        this.append(toastmsg, 'e');
-    },
+    error(msg = null) {
+        this.append(msg || this.msgs.e[0], 'e');
+    }
+
     /**
-     * base entry for the info message
+     * info message
+     * @param {string|null} msg
      */
-    info: function (msg) {
-        var toastmsg = msg || this.opts.msgs.i[0];
-        this.append(toastmsg, 'i');
-    },
+    info(msg = null) {
+        this.append(msg || this.msgs.i[0], 'i');
+    }
+
     /**
-     * base entry for the default message
+     * default message
+     * @param {string|null} msg
      */
-    default: function (msg) {
-        var toastmsg = msg || this.opts.msgs.d[0];
-        this.append(toastmsg, 'd');
-    },
-    append: function (msg, type) {
+    default(msg = null) {
+        this.append(msg || this.msgs.d[0], 'd');
+    }
+
+
+    append(msg, type) {
         //Get the options for the notification container
-        var tstOpts = this.opts.notif;
+        var tstOpts = this.notif;
 
         //Get the options for messages
-        var msgOpts = this.opts.msgs;
+        var msgOpts = this.msgs;
 
         //Create the toast element
         var tst = document.createElement('div');
         tst.classList.add(msgOpts[type][2], 'mt-notif', 'mt-slide-fade');
-        tst.style.animationDuration = (tstOpts.timeout /1000)+'s';
+        tst.style.animationDuration = (tstOpts.timeout / 1000) + 's';
 
         //Create the heading, and the message containers, insert the text, and then append them into the notification div
         var headingP = document.createElement('p');
         headingP.innerText = msgOpts[type][1];
         tst.appendChild(headingP);
         var messageP = document.createElement('p');
-        messageP.innerText = msg;    
+        messageP.innerText = msg;
         tst.appendChild(messageP);
         //Finally insert it into the main notification container, and then set up the timeout to remove it again
         document.getElementById('mt-cont').appendChild(tst);
@@ -118,7 +114,10 @@ var t_mets = {
             document.getElementById('mt-cont').removeChild(document.getElementById('mt-cont').firstChild);
         }, tstOpts.timeout);
     }
-};
 
 
+}
+
+
+export default minitoast;
 

@@ -15,15 +15,17 @@ So thats what, if you don't want this, move on.
 
 ## Usage
 
-Simply include minitoast.min.js into your website or app (get it from the dist folder).
+Installation
+1. clone the repo
+2. `npm install`
+3. `npm run watch` to build
+4. `npm run prod` to build  minified version
 
-```html
-    <script src="path/to/minitoast.min.js"></script>
-```
-Then initialise it after inclusion.
+Import and inititalise.
 
 ```javascript
-    var t = new minitoast();
+    import minitoast from 'path/to/minitoast';
+    let t = new minitoast();
 ```
 
 After that, you call the functions as follows.
@@ -53,25 +55,10 @@ Ovveriding the default properties is super easy, simply access them using dot no
     //Options for notifications
     notif: {
         timeout: 2500,
-        stl: {
-            marginTop: '7px',
-            marginBottom: '7px',
-            padding: '12px',
-            borderRadius : '3px'
-        },
-        headStl: {
-            margin: '0px',
-            padding: '0px',
-            fontWeight: 'bold'
-        },
-        msgStl: {
-            margin: '0px',
-            padding: '0px'
-        }
     }
 
     //Change them as following
-    t.opts.notif.stl.marginTop = "9001px"; //Over 9000
+    t.notif.stl.marginTop = "9001px"; //Over 9000
 
     /**
     * Default messages  & colors for the popup
@@ -95,7 +82,7 @@ Ovveriding the default properties is super easy, simply access them using dot no
     }
 
     //Change them like such
-    t.opts.msgs.s[0] = "Everthing went superbly!"
+    t.msgs.s[0] = "Everthing went superbly!"
 
 ```
 
@@ -109,41 +96,35 @@ Every instance is spawned with a class attached, you can use the class to custom
         */
     }
     /* A class that is applied to all notifications */
-    .mini-notif{
+    .mt-notif{
        /*
         * Your css here
         */
     }
     /* The success message */
-    .mini-success{
+    .mt-success{
        /*
         * Your css here
         */
     }
-    .mini-warning{
+    .mt-warning{
        /*
         * Your css here
         */
     }
-    .mini-error{
+    .mt-error{
        /*
         * Even more of your css here
         */
     }
-    .mini-info{
+    .mt-info{
        /*
         * Your css here
         */
     }
-    .mini-default{
+    .mt-default{
        /*
         * Guess what!? More of your css here
         */
     }
 ```
-
-
-## Future plans
-
-* css themes
-* more options - if the size impact is not huge

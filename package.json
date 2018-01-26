@@ -15,10 +15,13 @@
     "url": "https://github.com/jacojvv-dev/minitoast/issues"
   },
   "homepage": "https://github.com/jacojvv-dev/minitoast#readme",
+  "scripts": {
+    "dev": "NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "hot": "NODE_ENV=development webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "production": "NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+  },
   "devDependencies": {
-    "gulp-clean-css": "^3.8.0",
-    "gulp-copy": "^1.0.0",
-    "gulp-minify": "^1.0.0",
-    "gulp-watch": "^4.3.11"
+    "laravel-mix": "^2.0.0"
   }
 }
